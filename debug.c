@@ -10,19 +10,19 @@ char *str_lvl(int lvl)
 {
 	switch (lvl)
 	{
-		case SSOD_FUNC_TRACE_DEBUG: return "FTD";
-		case SSOD_DEBUG: return "DBG";
-		case SSOD_EVENT: return "EVT";
-		case SSOD_WARN: return "WRN";
-		case SSOD_ERROR: return "ERR";
+		case FNASSO_FUNC_TRACE_DEBUG: return "FTD";
+		case FNASSO_DEBUG: return "DBG";
+		case FNASSO_EVENT: return "EVT";
+		case FNASSO_WARN: return "WRN";
+		case FNASSO_ERROR: return "ERR";
 		default: "???";
 	}
 }
 
-void ssod_printf(int lvl, const char* fooname, const char *fmt, ...)
+void fnasso_printf(int lvl, const char* fooname, const char *fmt, ...)
 {
 #ifndef TRACE_MODE
-	if (lvl == SSOD_FUNC_TRACE_DEBUG) return;
+	if (lvl == FNASSO_FUNC_TRACE_DEBUG) return;
 #endif
 	
 	va_list ap;
@@ -50,14 +50,14 @@ void ssod_printf(int lvl, const char* fooname, const char *fmt, ...)
 	va_end(ap);
 }
 
-void ssod_func_start(const char *fooname)
+void fnasso_func_start(const char *fooname)
 {
-	ssod_printf(SSOD_FUNC_TRACE_DEBUG, fooname, "");
+	fnasso_printf(FNASSO_FUNC_TRACE_DEBUG, fooname, "");
 }
 
-void ssod_func_end(int level, const char *fooname, int status)
+void fnasso_func_end(int level, const char *fooname, int status)
 {
-	ssod_printf(level, fooname, "exit status (%d)", status);
+	fnasso_printf(level, fooname, "exit status (%d)", status);
 }
 
 
